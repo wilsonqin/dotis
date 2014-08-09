@@ -87,16 +87,17 @@ STATIC_URL = '/static/'
 #import dj_database_url
 #DATABASES['default'] =  dj_database_url.config()
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.dummy'
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.dummy'
+#     }
+# }
 
 #Make DB connection here
 from mongoengine import connect
-connect('dotis', host='mongodb://rrGAtRGryVKb:CjESqeemMwJk@dbs004.mongosoup.de/cc_rrGAtRGryVKb')
-
+connect('app28313994', username='test', password='abctest', host='kahana.mongohq.com', port=10043)
+#connect('app28313994', )
+#connect('dotis')
 
 #Authentication backends
 AUTH_USER_MODEL = 'mongo_auth.MongoUser'
