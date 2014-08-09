@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.auth',
+    'mongoengine.django.mongo_auth', #add mongo auth
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
@@ -55,12 +56,12 @@ WSGI_APPLICATION = 'app.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
@@ -83,8 +84,33 @@ STATIC_URL = '/static/'
 
 
 # Parse database configuration from $DATABASE_URL
-import dj_database_url
-DATABASES['default'] =  dj_database_url.config()
+#import dj_database_url
+#DATABASES['default'] =  dj_database_url.config()
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.dummy'
+    }
+}
+
+#Make DB connection here
+from mongoengine import connect
+connect('dotis', host='mongodb://rrGAtRGryVKb:CjESqeemMwJk@dbs004.mongosoup.de/cc_rrGAtRGryVKb')
+
+
+#Authentication backends
+AUTH_USER_MODEL = 'mongo_auth.MongoUser'
+
+MONGOENGINE_USER_DOCUMENT = 'mongoengine.django.auth.User'
+
+AUTHENTICATION_BACKENDS = (
+    'mongoengine.django.auth.MongoEngineBackend',
+)
+
+#SESSIONS - using mongodb
+SESSION_ENGINE = 'mongoengine.django.sessions'
+SESSION_SERIALIZER = 'mongoengine.django.sessions.BSONSerializer'
+
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
