@@ -8,6 +8,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.6/ref/settings/
 """
 
+PROD = False
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
@@ -95,9 +97,11 @@ STATIC_URL = '/static/'
 
 #Make DB connection here
 from mongoengine import connect
-connect('app28313994', username='test', password='abctest', host='kahana.mongohq.com', port=10043)
-#connect('app28313994', )
-#connect('dotis')
+
+if PROD:
+    connect('app28313994', username='test', password='abctest', host='kahana.mongohq.com', port=10043)
+else:
+    connect('dotis')
 
 #Authentication backends
 AUTH_USER_MODEL = 'mongo_auth.MongoUser'
