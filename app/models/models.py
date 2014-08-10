@@ -2,6 +2,8 @@ from mongoengine import *
 import datetime
 import json
 
+from random import uniform
+
 from django.conf import settings
 
 #remember our User model is in its own file
@@ -50,21 +52,6 @@ class Donation(Document):
     'indexes': [[("pickup_location", "2dsphere"), ("pickup_date_start", 1)]]
   }
 
-
-
-pledge_status = ["pending", "done"]
-
-class Pledge(Document):
-  donation = ReferenceField('Donation')
-  user = ReferenceField('User')
-  amount = FloatField(min_value=0)
-  status = StringField(default="pending")
-  date_pledged = DateTimeField(default=datetime.datetime.now)
-
-  meta = {
-        'indexes': ["donation", "user", "status", "date_pledged"]
-    }
-
 # collection of donation objects
 class Collection(Document):
   collector = ReferenceField('User')
@@ -75,6 +62,19 @@ class Collection(Document):
   meta = {
       'indexes': ["collector", "donation_list", "date_committed"]
   }
+
+pledge_status = ["pending", "done"]
+
+class Pledge(Document):
+  collection = ReferenceField('Collection')
+  user = ReferenceField('User')
+  amount = FloatField(min_value=0)
+  status = StringField(default="pending")
+  date_pledged = DateTimeField(default=datetime.datetime.now)
+
+  meta = {
+        'indexes': ["collection", "user", "status", "date_pledged"]
+    }
 
 # event of donation pick up / drop off
 # status is 0 for donation created by user
@@ -102,6 +102,27 @@ def create_indexes():
   Pledge.ensure_indexes()
   Collection.ensure_indexes()
   Transaction.ensure_indexes()
+
+def create_test_user(identifier):
+  user = User(username=identifier+"test@test.com", password="test", first_name=identifier, last_name="Tester")
+  user.init_password("test")
+  user.save()
+  return user.id;
+
+def populate_collection_test():
+  uids = [create_test_user('bob'), create_test_user('sally')]
+
+  for uid in uids:
+    donation_ids = []
+    for i in range(0,7,1):
+      coord = [42.352663 + uniform(-0.2, 0.2), -71.0675998 + uniform(-0.2, 0.2)]
+      donation = Donation(user=uid, estimated_value=20.00 + uniform(0.0, 10.0), name="Food Donation",description="lots of canned food", pickup_location=coord, weight=random.randint(0,15), donation_type=3)
+      donation.save()
+      donation_ids.append(donation.id)
+
+    #create collection
+
+
 
 def populate_food_pantry():
   Charity.drop_collection()

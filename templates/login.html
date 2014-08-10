@@ -15,7 +15,9 @@
 		        <li><label for="password">Password</label>  
 		        <input type="password" name="password" placeholder="password" required></li>  
 		        <li>  
-		        <input type="submit" class="btn btn-lg btn-primary" value="Login"></li>  
+		        <input type="submit" class="btn btn-lg btn-primary" value="Login"></li>
+                <img id="fblogin-button" src="{{ STATIC_URL }}/images/facebook-login-button.png" onClick='fbLogin()'/>
+                
                 {% if redirect_url %}
                     <input type="hidden" name="redirect_url" value="{{redirect_url}}">
                 {% endif %}
@@ -54,5 +56,4 @@
         </form>
         </div>	
 	</div>
-    <img id="fblogin-button" src="{{ STATIC_URL }}/images/facebook-login-button.png" onClick='fbLogin()'/>
 {% endblock %}
