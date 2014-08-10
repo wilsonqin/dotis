@@ -43,7 +43,7 @@ def login(request):
           user.backend = 'mongoengine.django.auth.MongoEngineBackend'
           userlogin(request, user)
 
-          print 'login: user.is_authenticated: ' + request.user.is_authenticated()
+          # print 'login: user.is_authenticated: ' + request.user.is_authenticated()
 
           request.session.set_expiry(60 * 60 * 1) # 1 hour timeout
 
@@ -95,10 +95,10 @@ def registerfb(request):
   return HttpResponse('fbregister')
 
 def donation(request):
-    print 'request.user.is_authenticated=', request.user.is_authenticated()
-    if not request.user.is_authenticated():
-      print 'on donation page, not authd '
-      return redirect('/login?r=%s' % request.path)
+    #print 'request.user.is_authenticated=', request.user.is_authenticated()
+    #if not request.user.is_authenticated():
+    #  print 'on donation page, not authd '
+    #  return redirect('/login?r=%s' % request.path)
 
     context = {'title': 'Donation'}
     return render(request, 'donation.html', context)

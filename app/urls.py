@@ -22,7 +22,8 @@ urlpatterns = patterns('',
     url(r'^collection/(?P<collection_id>[0-9]+)', views.collection, name='collection'),
     # url(r'^getDonations', views.getDonations, name='getDonations')
     url(r'^register', views.register, name='register'),
-    url(r'^registerfb', views.registerfb, name='register-facebook'),
+    
+    # url(r'^registerfb', views.registerfb, name='register-facebook'),
 
 
     #populate links
