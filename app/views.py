@@ -201,31 +201,31 @@ def getDonations(request):
 
 def getCharities(request):
   data = {}
-    if request.GET['radius'] and request.GET['lat'] and request.GET['lng']:
-        radius = float(request.GET['radius']) /  3963.192 #in radians
-        lat = float(request.GET['lat'])
-        lng = float(request.GET['lng'])
-        places = Charity.objects(pickup_location__geo_within_center=[[lat, lng], radius ]);
-        places_json = []
-        for item in places:
-            places_json.append({
-                'name' : item.name,
-                'donation_type' : item.donation_type,  
-                'weight' : item.weight,
-                'description' : item.description,
-                'estimated_value' : item.estimated_value,
-                'item_count' : item.item_count,
-                'lat' : item.pickup_location['coordinates'][0],
-                'lng' : item.pickup_location['coordinates'][1],
-                'id' : str(item.id)
-            });
-    
-        data = {
-            'places': places_json
-        }
+  if request.GET['radius'] and request.GET['lat'] and request.GET['lng']:
+      radius = float(request.GET['radius']) /  3963.192 #in radians
+      lat = float(request.GET['lat'])
+      lng = float(request.GET['lng'])
+      places = Charity.objects(pickup_location__geo_within_center=[[lat, lng], radius ]);
+      places_json = []
+      for item in places:
+          places_json.append({
+              'name' : item.name,
+              'donation_type' : item.donation_type,  
+              'weight' : item.weight,
+              'description' : item.description,
+              'estimated_value' : item.estimated_value,
+              'item_count' : item.item_count,
+              'lat' : item.pickup_location['coordinates'][0],
+              'lng' : item.pickup_location['coordinates'][1],
+              'id' : str(item.id)
+          });
+  
+      data = {
+          'places': places_json
+      }
 
-    data = simplejson.dumps(data)
-    return HttpResponse(data, content_type='application/json')
+  data = simplejson.dumps(data)
+  return HttpResponse(data, content_type='application/json')
 
 
 def populate_food(request):

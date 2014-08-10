@@ -119,7 +119,7 @@ def populate_collection_test():
 
   for uid in uids:
     donation_ids = []
-    for i in range(0,7,1):
+    for i in range(0,1000,1):
       coord = [42.352663 + uniform(-0.2, 0.2), -71.0675998 + uniform(-0.2, 0.2)]
       donation = Donation(user=uid, estimated_value=20.00 + uniform(0.0, 10.0), name="Food Donation",description="lots of canned food", pickup_location=coord, weight=randint(0,15), donation_type=3)
       donation.save()
