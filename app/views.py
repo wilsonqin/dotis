@@ -59,20 +59,20 @@ def register(request):
   if(request.method == 'POST') and request.POST['emailsignup']:
     #handle login attempt
     try:
-      user = User.objects.get(email=request.POST['emailsignup'])
-      if not user:
-        user = User(email=request.POST['emailsignup'], last_name=request.POST['lastnamesignup'], first_name=request.POST['firstnamesignup'], password=request.POST['passwordsignup'])
-        user.init_password(request.POST['passwordsignup'])
-        user.save()
-        
-        #user.backend = 'mongoengine.django.auth.MongoEngineBackend'
-        #userlogin(request, user)
-        #request.session.set_expiry(60 * 60 * 1) # 1 hour timeout
-        return HttpResponse(user)
-      else:
-          return HttpResponse('register failed, user already exists')
-    except Exception:
-        return HttpResponse('unknown error')
+      user = User.objects.get(email__exact=request.POST['emailsignup'])
+    except DoesNotExist:
+      user = None
+    if not user:
+      user = User(email=request.POST['emailsignup'], last_name=request.POST['lastnamesignup'], first_name=request.POST['firstnamesignup'], password=request.POST['passwordsignup'])
+      user.init_password(request.POST['passwordsignup'])
+      user.save()
+      
+      user.backend = 'mongoengine.django.auth.MongoEngineBackend'
+      userlogin(request, user)
+      request.session.set_expiry(60 * 60 * 1) # 1 hour timeout
+      return HttpResponse(user)
+    else:
+        return HttpResponse('register failed, user already exists')
   else:
     return HttpResponse('nothing exists here')
 
