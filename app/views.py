@@ -26,9 +26,8 @@ def browse(request):
   return render(request, 'collections.html', context)
 
 def collection(request, collection_id):
-  # collection = Collection.objects(collection_id)
-  # context = {'name': collection.collector.first_name}
-  context = {}
+  # 53e78b9d3c47b1721c79b5d8
+  # context = {'first_name': Collection.collector.first_name}
   return render(request, 'collection.html', context)
 
 def users(request):
@@ -238,3 +237,6 @@ def populate_collection(request):
   return HttpResponse("collection created: " + str(collection_id))
 
 
+def about(request):
+  context = {}
+  return render(request, 'about.html', context)

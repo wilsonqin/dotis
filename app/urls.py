@@ -20,11 +20,10 @@ urlpatterns = patterns('',
     url(r'^users', views.users, name='users'),
     url(r'^map', views.map, name='map'),
     url(r'^getDonations', views.getDonations, name='getDonations'),
-    # url(r'^collection/(?P<collection_id>[0-9]+)', views.collection, name='collection'),
+    url(r'^collection/(?P<collection_id>[0-9A-Za-z]+)', views.collection, name='collection'),
     url(r'^register', views.register, name='register'),
-    
     # url(r'^registerfb', views.registerfb, name='register-facebook'),
-
+	url(r'^about', views.about, name='about'),
 
     #populate links
     url(r'^populate/charities', views.populate_food, name='populate charities'),

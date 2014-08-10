@@ -1,10 +1,12 @@
 {% extends "base.html" %}
 {% block style %}<link href="{{ STATIC_URL }}css/collection.css" rel="stylesheet"/>{% endblock %}
-{% block title %}{{ name }}{% endblock %}
+{% block title %}{{ first_name }}{{ last_name }}'s Collection{% endblock %}
+
+{% block index %}<a class="navbar-brand" href="../index"><h1>Dotis</h1></a>{% endblock %}
 
 {% block content %}
 <div class="padded">
-<h2>Roxbury Shoe Collection</h2>
+<h2>{{ first_name }}{{ last_name }}'s Collection</h2>
 <div class="row">
 <div class="col-sm-6">
 <div class="sm-map"></div>
@@ -27,7 +29,7 @@
 <input type="hidden" name="hosted_button_id" value="BD9J3YLN5B3EJ">
 <input type="submit" class="btn btn-lg btn-success"  border="0" name="submit" alt="PayPal - The safer, easier way to pay online!" value="Pledge">
 
-<button type="button" class="btn btn-lg btn-danger">Donate</button>
+<button type="button" class="btn btn-lg btn-primary">Donate</button>
 </form>
 </div>
 <div class="padded">
