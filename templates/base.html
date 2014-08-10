@@ -5,6 +5,12 @@
 	<script src="{{ STATIC_URL }}js/jquery-2.1.1.min.js"></script>
 	<script src="{{ STATIC_URL }}js/fblogin.js"></script>
     <title>{% block title %}{{ title }}{% endblock %}</title>
+
+    <!-- set the global redirect url for later scripts -->
+    <script>
+        /* set redirect_url global if necessary */
+        g_REDIRECT_URL = {% if redirect_url %}"{{ redirect_url }}"{% else %}NULL{% endif %};
+    </script>
 </head>
 
 <body>
