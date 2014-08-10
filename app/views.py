@@ -3,4 +3,5 @@ from django.http import HttpResponse, HttpResponseRedirect
 import json
 
 def index(request):
-	return render(request, 'map.html')
+	context = {'title': 'adsfsa'}
+	return render(request, 'index.html', context)
