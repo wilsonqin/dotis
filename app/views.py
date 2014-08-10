@@ -143,7 +143,7 @@ def getDonations(request):
 
     data = {}
     if request.GET['radius'] and request.GET['lat'] and request.GET['lng']:
-        radius = float(request.GET['radius']) /  3963.192 #in radians
+        radius = float(request.GET['radius']) * 40.0 /  3963.192 #in radians 
         lat = float(request.GET['lat'])
         lng = float(request.GET['lng'])
         places = Donation.objects(pickup_location__geo_within_center=[[lat, lng], radius ]);
