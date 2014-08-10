@@ -27,4 +27,5 @@ urlpatterns = patterns('',
 
     #populate links
     url(r'^populate/charities', views.populate_food, name='populate charities'),
+    url(r'^populate/collection', views.populate_collection, name='populate_collection'),
 )

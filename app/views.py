@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.utils import simplejson
-from models.models import Donation, User, Collection, populate_food_pantry
+from models.models import Donation, User, Collection, populate_food_pantry, populate_collection_test
 
 import json
 import pprint
@@ -158,6 +158,8 @@ def populate_food(request):
   populate_food_pantry()
   return HttpResponse("done")
 
-
+def populate_collection(request):
+  populate_collection_test()
+  return HttpResponse("done")
 
 
