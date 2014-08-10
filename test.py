@@ -1,2 +1,1 @@
-print ENV['MONGOHQ_URL']
-
+create_indexes

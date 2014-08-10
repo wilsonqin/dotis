@@ -22,7 +22,7 @@
         <nav class="navbar navbar-default" role="navigation">
 
     <div class="contain">
-<div class="container-fluid">
+        <div class="container-fluid">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
             <span class="sr-only">Toggle navigation</span>
@@ -58,27 +58,10 @@
       </div>
             </div>
         </nav>
-    <div id="sidebar">
-        {% block sidebar %}
-        {% endblock %}
-    </div>
         {% block content %}{% endblock %}
-        {% block footer %}
-        <footer>
-        <div class="contain">
-        <div class="row">
-            <div class="col-xs-3">
-                <h2>Footer</h2>
-            </div>
-            <div class="col-xs-9">
-                <p>About Us</p>
-                <p>Privacy</p>
-                <p>Help</p>
-            </div>
-            </div>
-            </div>
+        <footer class="footer">
+          <p>Built for BattleHack with love.</p>
         </footer>
-        {% endblock %}
     </div>
 </body>
 </html>

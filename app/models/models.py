@@ -21,9 +21,9 @@ class DropoffLocation(Document):
   charity = ReferenceField('Charity')
   location = PointField(auto_index=False)
 
-  meta = {
-        'indexes': [("location", "2dsphere"), 'charity']
-    }
+  # meta = {
+  #       'indexes': [("location", "2dsphere"), 'charity']
+  #   }
 
 donation_status = ["open", "done"]
 
@@ -34,16 +34,16 @@ class Donation(Document):
   description = StringField()
   estimated_value = FloatField(min_value=0)
   user = ReferenceField('User')
-  # item_count = IntField(0)
+  item_count = IntField(min_value=0)
   pickup_location = PointField(auto_index=False)
   pickup_date_start = DateTimeField(default=datetime.datetime.now)
-  pickup_date_end = DateTimeField(default=(datetime.datetime.now + datetime.timedelta(days=3)))
+  # pickup_date_end = DateTimeField(default=(datetime.datetime.now + datetime.timedelta(days=3)))
   # collection_id = StringField()
   # charity_id = StringField()
 
-  meta = {
-    'indexes': [("pickup_location", "2dsphere"), 'pickup_date_start', 'pickup_date_end']
-  }
+  # meta = {
+  #   'indexes': [("pickup_location", "2dsphere"), 'pickup_date_start', 'pickup_date_end']
+  # }
 
 
 pledge_status = ["pending", "done"]

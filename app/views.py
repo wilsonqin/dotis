@@ -45,30 +45,44 @@ def createDonation(request):
 # validate form elements and accept the form
 def postCreateDonation(request):
     print request.POST
+    name = request.POST['name']
+    donation_type = request.POST['donation_type']
+    weight = request.POST['weight']
+    description = request.POST['description']
+    estimated_value = request.POST['estimated_value']
+    user = request.POST['user_id']
+    item_count = request.POST['item_count']
+    pickup_location = request.POST['pickup_location']
+
+
     # if request.POST['name'] and request.POST['donation_type'] and request.POST['item_count'] and request.POST['estimated_value']:
     #     donation = Donation(name=request.POST['name'], donation_type=request.POST['donation_type'], item_count=request.POST['item_count'], estimated_value= request.POST['estimated_value'])
     #     print donation.name
     #     print donation.donation_type
-
-        # donation.save()
+    # donation.save()
     return createDonation(request)
 
 """
  restful location data
  expects the request to have radius, latitude, longitude
 """
-def getDonations(request):
-    data = {
-       'test': 1
-    }
+# def getDonations(request):
+#     data = {
+#        'test': 1
+#     }
 
-    data = simplejson.dumps(data)
-    # if request.POST['radius'] and request.POST['lat'] and request.POST['lng']:
-    #     radius = request.POST['radius']
-    #     latitude = request.POST['lat']
-    #     longitude = request.POST['lng']
-    # else:
-    return HttpResponse(data, mimetype='application/json')
+#     data = simplejson.dumps(data)
+#     # if request.POST['radius'] and request.POST['lat'] and request.POST['lng']:
+#     #     radius = request.POST['radius']
+#     #     latitude = request.POST['lat']
+#     #     longitude = request.POST['lng']
+#     # else:
+#     db.places.find( { 
+#         loc: { $geoWithin :
+#               { $center : [ [-74, 40.74], 10 ] }
+#     } } )
+
+#     return HttpResponse(data, mimetype='application/json')
 
 
 

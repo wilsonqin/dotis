@@ -18,5 +18,5 @@ urlpatterns = patterns('',
     url(r'^postcreatedonation', views.postCreateDonation, name='postCreateDonation'),
     url(r'^browse', views.browse, name='browse'),
     url(r'^users', views.browse, name='users'),
-    url(r'^getDonations', views.getDonations, name='getDonations')
+    # url(r'^getDonations', views.getDonations, name='getDonations')
 )

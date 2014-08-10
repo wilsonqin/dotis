@@ -8,14 +8,14 @@ function invisible(){
 
 
 function fbLogin(rel_redirect_url) {
-    FB.login(function(response) {
-           // handle the response
+  FB.login(function(response) {
+  // handle the response
 
-           //redirect us to our promised land
-            if(rel_redirect_url){
-              window.location.replace(rel_redirect_url);
-            }
-         }, {scope: 'user_likes, friends_likes'});
+  //redirect us to our promised land
+  if(rel_redirect_url){
+    window.location.replace(rel_redirect_url);
+  }
+  }, {scope: 'user_likes, friends_likes'});
 }
 
 /**
@@ -27,28 +27,26 @@ var objectarray = [];
 var jsonSite = "";
 
 function json(jsonSite) {
-    if (jsonSite !== undefined) {
-        d3.json(jsonSite, function(error, d) {
+  if (jsonSite !== undefined) {
+      d3.json(jsonSite, function(error, d) {
+          (d.data).map(function(d) {
+            objectarray.push(d);
+          })
+          
+          jsonSite = d.paging.next;
+          
+          json(jsonSite);
 
-            (d.data).map(function(d) {
-              objectarray.push(d);
-            })
-            
-            jsonSite = d.paging.next;
-            
-            json(jsonSite);
-
-        });
-    }
+      });
+  }
 }
 
 function fbUserInfo() {
   console.log('Welcome!  Fetching your information.... ');
+  
   FB.api('/me', function(response) {
     console.log('Good to see you, '+ response.name + '.');
   });
-
-
 
   FB.api("me/likes", function(res){
     console.log('My likes');
@@ -162,7 +160,7 @@ window.fbAsyncInit = function() {
   // Here we run a very simple test of the Graph API after login is successful. 
   // This testAPI() function is only called in those cases. 
   function testAPI() {
-    // fbUserInfo();    
+    fbUserInfo();    
     // fbFriendsLikes(20);
   }
 

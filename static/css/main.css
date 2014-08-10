@@ -87,7 +87,8 @@ section.users {
 }
 footer {
 	background-color: rgba(45,128,45, .1);
-	height: 200px;
+	height: 100%;
+	text-align: center;
 	padding: 25px 50px;
 }
 footer .col-xs-9 {
