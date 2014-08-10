@@ -135,6 +135,8 @@ def populate_collection_test():
     for i in range(0,5,1):
       Pledge(collection=collection_id, user=uid, amount=uniform(1.0,500.0))
 
+  return collection_id
+
 
 def populate_food_pantry():
   Charity.drop_collection()

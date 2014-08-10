@@ -175,7 +175,7 @@ def populate_food(request):
   return HttpResponse("done")
 
 def populate_collection(request):
-  populate_collection_test()
-  return HttpResponse("done")
+  collection_id = populate_collection_test()
+  return HttpResponse("collection created: " + str(collection_id))
 
 
