@@ -17,6 +17,14 @@ class Charity(Document):
     'indexes': ['name', 'types_accepted']
   }
 
+class DropoffLocation(Document):
+  charity = ReferenceField('Charity')
+  location = PointField(auto_index=False)
+
+  meta = {
+        'indexes': [[("location", "2dsphere")], 'charity']
+    }
+
 donation_status = ["open", "done"]
 
 class Donation(Document):
