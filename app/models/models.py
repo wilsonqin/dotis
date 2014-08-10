@@ -1,16 +1,19 @@
 from mongoengine import *
 import datetime
+import json
+
+from django.conf import settings
 
 #remember our User model is in its own file
 from User import User
 
-donation_types = ["clothes", "furniture", "books"]
+donation_types = ["clothes", "furniture", "books", "food"]
 
 class Charity(Document):
   name = StringField()
   types_accepted = ListField(IntField(min_value=0))
-  email = StringField(required=True)
-  contact_name = StringField(required=True)
+  email = StringField()
+  contact_name = StringField()
 
   meta = {
     # put an index on appropriate fields
@@ -19,7 +22,9 @@ class Charity(Document):
 
 class DropoffLocation(Document):
   charity = ReferenceField('Charity')
-  location = PointField(auto_index=False)
+  location = PointField(auto_index=False) # [x = lat, y = long]
+  description = StringField()
+  url = StringField()
 
   meta = {
         'indexes': [[("location", "2dsphere")], 'charity']
@@ -97,3 +102,40 @@ def create_indexes():
   Pledge.ensure_indexes()
   Collection.ensure_indexes()
   Transaction.ensure_indexes()
+
+def populate_food_pantry():
+  Charity.drop_collection()
+  DropoffLocation.drop_collection()
+
+  BASE_DIR = getattr(settings, "BASE_DIR", None)
+
+  f = open(BASE_DIR + '/app/models/data/boston-food-pantries.json', 'r')
+  buf = f.read()
+  data = json.loads(str(buf))
+  data = data['data']
+
+  for pantry in data:
+    name = pantry[9]
+    geo_list = pantry[11]
+
+    site = pantry[14]
+    # print site
+
+    address = geo_list[0]
+    lati = float(geo_list[1])
+    longi = float(geo_list[2])
+
+    address_pts = json.loads(address)
+
+    address = address_pts['address'] + ', ' + address_pts['city'] + ', ' + address_pts['state'] + " " + address_pts['zip']
+
+    # print address, pid, name, lati, longi
+
+    charity = Charity(name=name, types_accepted=[3])
+    charity.save()
+    pid = charity.id
+    dropoff_loc = DropoffLocation(description=address, charity=pid, location=[lati, longi], url=site)
+    dropoff_loc.save()
+
+  Charity.ensure_indexes()
+  DropoffLocation.ensure_indexes()
