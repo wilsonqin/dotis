@@ -7,8 +7,9 @@
 	<div class = "login">
 	
     <div class="loginform cf">
-		<form name="login" action="index_submit" method="get"  autocomplete="on" accept-charset="utf-8">  
-		    <ul>  
+		<form name="login" action="/login" method="POST"  autocomplete="on" accept-charset="utf-8">  
+		    {% csrf_token %}
+            <ul>  
 		        <li><label for="usermail">Email</label>  
 		        <input type="email" name="usermail" placeholder="yourname@email.com" required></li>  
 		        <li><label for="password">Password</label>  
@@ -19,12 +20,17 @@
 		</form>
 		</div>
 	<div class="loginform">
-        <form name="login" action="" method="get"  autocomplete="on" accept-charset="utf-8"> 
+        <form name="login" action="/register" method="POST"  autocomplete="on" accept-charset="utf-8"> 
+            {% csrf_token %}
             <h1> Or Sign up </h1> 
             <ul>
             <li>
-                <label for="usernamesignup" class="uname" data-icon="u">Your username</label>
-                <input id="usernamesignup" name="usernamesignup" required="required" type="text" placeholder="username" />
+                <label for="firstnamesignup" class="fname" data-icon="u">Your First Name</label>
+                <input id="firstnamesignup" name="firstnamesignup" required="required" type="text" placeholder="username" />
+            </li>
+            <li>
+                <label for="lastnamesignup" class="lname" data-icon="u">Your Last Name</label>
+                <input id="lastnamesignup" name="lastnamesignup" required="required" type="text" placeholder="username" />
             </li>
             <li> 
                 <label for="emailsignup" class="youmail" data-icon="e" > Your email</label>
