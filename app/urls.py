@@ -5,6 +5,7 @@ admin.autodiscover()
 
 import views
 
+
 urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'app.views.home', name='home'),
@@ -13,5 +14,7 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^index', views.index, name='index'),
     url(r'^login', views.login, name='login'),
+    url(r'^createdonation', views.createDonation, name='createDonation'),
+    url(r'^postcreatedonation', views.postCreateDonation, name='postCreateDonation'),
     url(r'^browse', views.browse, name='browse'),
 )
