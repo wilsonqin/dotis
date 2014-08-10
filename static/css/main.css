@@ -88,6 +88,8 @@ section.users {
 	padding: 10px;
 }
 .users .img {
+	background-image: url(http://localhost:8000/static/images/pic1.png);
+	background-size: cover;
 	background-color: white;
 	width: 100px;
 	height: 100px;
