@@ -22,9 +22,10 @@ def browse(request):
   context = {}
   return render(request, 'collections.html', context)
 
-def col(request, collection_id):
-  collection = Collection.objects(collection_id)
-  context = {'name': collection.collector.first_name}
+def collection(request, collection_id):
+  # collection = Collection.objects(collection_id)
+  # context = {'name': collection.collector.first_name}
+  context = {}
   return render(request, 'collection.html', context)
 
 def users(request):
