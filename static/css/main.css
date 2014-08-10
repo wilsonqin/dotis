@@ -1,9 +1,9 @@
 @import url(https://fonts.googleapis.com/css?family=Raleway:700);
 @import url(https://fonts.googleapis.com/css?family=Raleway:500);
-
 html, body{
     height: 100%;
 }
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,700);
 
 .navbar-default {
 	margin-bottom: 0;
@@ -23,9 +23,10 @@ color: white;
 	height: 100px;
 }
 header {
-	background-color: rgba(45,45,45, .1);
+	background-color: rgba(42,0,189,.8);
 	height: 300px;
 	padding: 25px 50px;
+	font-family: OpenSans;
 
 }
 .header-blurb {
@@ -79,7 +80,7 @@ section.users {
 .collections h2 {
 	text-align: center;
 }
-.users .row .col-xs-4 {
+.users .col-xs-4 {
 	box-shadow: 0 0 5px rgba(0,0,0,.5);
 	margin: 20px;
 	background-color: lightgrey;
@@ -103,4 +104,7 @@ footer .col-xs-9 {
 }
 .contain {
 	/*max-width: 960px;*/
+}
+.padded {
+	padding: 25px 40px;
 }

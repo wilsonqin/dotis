@@ -1,0 +1,13 @@
+.sm-map {
+	height: 100px;
+	background-color: lightgreen;
+}
+.users .col-xs-4 {
+	float: none;
+}
+table {
+	width: 100%
+}
+.donoramt {
+	/*text-align: right;*/
+}

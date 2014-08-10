@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.utils import simplejson
-from models.models import Donation, User, populate_food_pantry
+from models.models import Donation, User, Collection, populate_food_pantry
 
 import json
 import pprint
@@ -21,6 +21,11 @@ def index(request):
 def browse(request):
   context = {}
   return render(request, 'collections.html', context)
+
+def col(request, collection_id):
+  collection = Collection.objects(collection_id)
+  context = {'name': collection.collector.first_name}
+  return render(request, 'collection.html', context)
 
 def users(request):
   context = {}
