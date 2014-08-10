@@ -27,12 +27,8 @@ class Donation(Document):
   date = DateTimeField(default=datetime.datetime.now)
   status = IntField(0)
   collection_id = StringField()
-
-
-# assigned charity to donation
-class DonationCharity(Document):
   charity_id = StringField()
-  donation_id = StringField()
+
 
 # collection of donation objects
 class Collection(Document):

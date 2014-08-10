@@ -5,17 +5,11 @@
 	<script src="{{ STATIC_URL }}js/jquery-2.1.1.min.js"></script>
 	<script src="{{ STATIC_URL }}js/fblogin.js"></script>
     <title>{% block title %}{{ title }}{% endblock %}</title>
+    <!-- includes css/js that are view specific -->
+    {% block static_includes %} {% endblock %} 
 </head>
 
 <body>
-    <div id="sidebar">
-        {% block sidebar %}
-        <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/blog/">Blog</a></li>
-        </ul>
-        {% endblock %}
-    </div>
 
     <div id="content">
         {% block content %}{% endblock %}
