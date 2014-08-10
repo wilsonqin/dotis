@@ -5,23 +5,31 @@ html, body{
 }
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,700);
 
-.navbar-default {
-	margin-bottom: 0;
-	background-color: #93da93;
-	border-radius: 0;
-}
-.navbar-brand {
-	font-family: Raleway;
-}
-.navbar-brand h1 {
+
+.header a {
 	color: white;
 }
-.navbar-default .navbar-nav > li > a {
-color: white;
+.header h3 {
+	color: white;
+
 }
-.navbar-header {
+
+.header {
+	background-color: #93da93;
+	width: 100%;
 	height: 100px;
+	color: white;
+	height: 100px;
+	padding: 25px 50px;
+	font-family: OpenSans;
+	font-size: 20px;
+
 }
+
+.navbar-header {
+	height: 80px;
+}
+
 header {
 	background-color: rgba(42,0,189,.8);
 	height: 300px;
