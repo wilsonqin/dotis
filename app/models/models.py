@@ -1,4 +1,5 @@
 from mongoengine import *
+import datetime
 
 class Charity(Document):
   name = StringField()
@@ -19,21 +20,29 @@ class DropoffLocation(Document):
     }
 
 class Donation(Document):
+  name = StringField()
   donation_type = IntField(0)
   weight = IntField(0)
   estimated_value = IntField(0)
-  item_count = IntField(0)
-  pickup_location = PointField(auto_index=False)
-  date = DateTimeField(default=datetime.datetime.now)
-  status = IntField(0)
-  collection_id = StringField()
-  charity_id = StringField()
+  # item_count = IntField(0)
+  # pickup_location = PointField(auto_index=False)
+  # date = DateTimeField(default=datetime.datetime.now)
+  # status = IntField(0)
+  # collection_id = StringField()
+  # charity_id = StringField()
 
+
+class Pledge(Document):
+  donation_id = StringField()
+  user_id = StringField()
+  amount = FloatField(0)
 
 # collection of donation objects
 class Collection(Document):
   user_id = StringField()
   donation_id_list = StringField()
+
+
 
 # event of donation pick up / drop off
 # status is 0 for donation created by user
