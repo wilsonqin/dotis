@@ -8,6 +8,10 @@ def index(request):
   context = {'title': 'adsfsa', 'redirect_url': request.path}
   return render(request, 'index.html', context)
 
+def browse(request):
+  context = {}
+  return render(request, 'collections.html', context)
+
 def login(request):
   context = {
     'title': 'Login to Dotis', 

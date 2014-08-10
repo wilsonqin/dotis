@@ -4,9 +4,9 @@
 {% block sidebar %}
 {% endblock %}
 {% block content %}
-
 	<div class = "login">
-	<div class="loginform">
+	
+    <div class="loginform cf">
 		<form name="login" action="index_submit" method="get"  autocomplete="on" accept-charset="utf-8">  
 		    <ul>  
 		        <li><label for="usermail">Email</label>  
@@ -18,31 +18,31 @@
 		    </ul>  
 		</form>
 		</div>
-		<div id="register" class="animate form">
-            <form name="login" action="" method="get"  autocomplete="on" accept-charset="utf-8"> 
-                <h1> Or Sign up </h1> 
-                <ul>
-                <li> 
-                    <label for="usernamesignup" class="uname" data-icon="u">Your username</label>
-                    <input id="usernamesignup" name="usernamesignup" required="required" type="text" placeholder="mysuperusername690" />
-                </li>
-                <li> 
-                    <label for="emailsignup" class="youmail" data-icon="e" > Your email</label>
-                    <input id="emailsignup" name="emailsignup" required="required" type="email" placeholder="mysupermail@mail.com"/> 
-                </li>
-                <li> 
-                    <label for="passwordsignup" class="youpasswd" data-icon="p">Your password </label>
-                    <input id="passwordsignup" name="passwordsignup" required="required" type="password" placeholder="eg. X8df!90EO"/>
-                </li>
-                <li> 
-                    <label for="passwordsignup_confirm" class="youpasswd" data-icon="p">Please confirm your password </label>
-                    <input id="passwordsignup_confirm" name="passwordsignup_confirm" required="required" type="password" placeholder="eg. X8df!90EO"/>
-                </p>
-                
-                    <li><input type="submit"  class="btn btn-lg btn-danger" value="Sign up"/> </li>
-                
-                </ul>
-            </form>
+	<div class="loginform">
+        <form name="login" action="" method="get"  autocomplete="on" accept-charset="utf-8"> 
+            <h1> Or Sign up </h1> 
+            <ul>
+            <li>
+                <label for="usernamesignup" class="uname" data-icon="u">Your username</label>
+                <input id="usernamesignup" name="usernamesignup" required="required" type="text" placeholder="username" />
+            </li>
+            <li> 
+                <label for="emailsignup" class="youmail" data-icon="e" > Your email</label>
+                <input id="emailsignup" name="emailsignup" required="required" type="email" placeholder="name@email.com"/> 
+            </li>
+            <li> 
+                <label for="passwordsignup" class="youpasswd" data-icon="p">Your password </label>
+                <input id="passwordsignup" name="passwordsignup" required="required" type="password" placeholder="input password"/>
+            </li>
+            <li> 
+                <label for="passwordsignup_confirm" class="youpasswd" data-icon="p">Please confirm your password </label>
+                <input id="passwordsignup_confirm" name="passwordsignup_confirm" required="required" type="password" placeholder="confirm password"/>
+            </p>
+            
+                <li><input type="submit"  class="btn btn-lg btn-danger" value="Sign up"/> </li>
+            
+            </ul>
+        </form>
         </div>	
 	</div>
     <img id="fblogin-button" src="img/active_200.png" onClick='fbLogin()'/>

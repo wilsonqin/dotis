@@ -3,6 +3,7 @@
 .navbar-default {
 	margin-bottom: 0;
 	background-color: #93da93;
+	border-radius: 0;
 }
 .navbar-brand {
 	font-family: Raleway;
@@ -64,6 +65,12 @@ section.collections {
 section.users {
 	background-color: rgba(45,45,128, .1);
 	padding: 25px 50px;
+}
+.users h2 {
+	text-align: center;
+}
+.collections h2 {
+	text-align: center;
 }
 .users .row .col-xs-4 {
 	box-shadow: 0 0 5px rgba(0,0,0,.5);
