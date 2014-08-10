@@ -1,5 +1,10 @@
 @import url(https://fonts.googleapis.com/css?family=Raleway:700);
 @import url(https://fonts.googleapis.com/css?family=Raleway:500);
+
+html, body{
+    height: 100%;
+}
+
 .navbar-default {
 	margin-bottom: 0;
 	background-color: #93da93;
@@ -9,7 +14,7 @@
 	font-family: Raleway;
 }
 .navbar-brand h1 {
-	color: #eeff5e;
+	color: white;
 }
 .navbar-default .navbar-nav > li > a {
 color: white;
@@ -87,9 +92,11 @@ section.users {
 }
 footer {
 	background-color: rgba(45,128,45, .1);
-	height: 100%;
+ 	bottom: -120px;
+ 	height: 120px;
 	text-align: center;
 	padding: 25px 50px;
+	color:rgb(168, 168, 168);
 }
 footer .col-xs-9 {
 	text-align: right;
