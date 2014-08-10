@@ -5,3 +5,7 @@ import json
 def index(request):
 	context = {'title': 'adsfsa'}
 	return render(request, 'index.html', context)
+
+def createDonation(request):
+	context = {'title': 'Create Donation'}
+	return render(request, 'donation.html', context)

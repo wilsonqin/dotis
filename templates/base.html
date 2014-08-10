@@ -3,6 +3,7 @@
 <head>
     <link href="{{ STATIC_URL }}css/bootstrap.css" rel="stylesheet"/>
 	<script src="{{ STATIC_URL }}js/jquery-2.1.1.min.js"></script>
+	<script src="{{ STATIC_URL }}js/fblogin.js"></script>
     <title>{% block title %}My amazing site{% endblock %}</title>
 </head>
 
@@ -17,6 +18,7 @@
     </div>
 
     <div id="content">
+    <img id="fblogin-button" src="img/active_200.png" onClick='fbLogin()'/>
         {% block content %}{% endblock %}
     </div>
 </body>
