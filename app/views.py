@@ -13,9 +13,14 @@ def browse(request):
   return render(request, 'collections.html', context)
 
 def login(request):
+  
+  #wrap redirect_url
+  redirect_url = request.GET.get('r', False)
+
+
   context = {
     'title': 'Login to Dotis', 
-    'redirect_url': request['GET']['r']
+    'redirect_url': redirect_url
     }
   return render(request, 'login.html', context)
 
