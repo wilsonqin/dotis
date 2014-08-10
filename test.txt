@@ -1,0 +1,271 @@
+
+     # if request.POST['name'] and request.POST['donation_type'] and request.POST['item_count'] and request.POST['estimated_value']:
+diff --git a/static/css/donation.css b/static/css/donation.css
+index 8eedd02..8ab33bf 100644
+--- a/static/css/donation.css
++++ b/static/css/donation.css
+@@ -1,3 +1,8 @@
+ .row {
+   margin-bottom: 5px; /* or whatever */
++}
++
++#createDonationForm { 
++    margin: 0 auto; 
++    width:400px;
+ }
+
+diff --git a/static/css/main.css b/static/css/main.css
+index 65fcc89..724f232 100644
+--- a/static/css/main.css
++++ b/static/css/main.css
+@@ -1,15 +1,21 @@
+ @import url(https://fonts.googleapis.com/css?family=Raleway:700);
+ @import url(https://fonts.googleapis.com/css?family=Raleway:500);
++
++html, body{
++    height: 100%;
++}
++
+ .navbar-default {
+ 	margin-bottom: 0;
+ 	background-color: #93da93;
+ 	border-radius: 0;
++	text-align: right;
+ }
+ .navbar-brand {
+ 	font-family: Raleway;
+ }
+ .navbar-brand h1 {
+-	color: #eeff5e;
++	color: white;
+ }
+ .navbar-default .navbar-nav > li > a {
+ color: white;
+@@ -87,13 +93,17 @@ section.users {
+ }
+ footer {
+ 	background-color: rgba(45,128,45, .1);
+-	height: 100%;
+-	text-align: center;
+-	padding: 25px 50px;
+-}
+-footer .col-xs-9 {
++	height: 120px;
++	bottom: -120px;
+ 	text-align: right;
++	padding: 25px 50px;
++	color:rgb(168, 168, 168);
++	margin-top: 130px;
++
+ }
++
++
+ .contain {
+-	/*max-width: 960px;*/
+-}
+\ No newline at end of file
++	max-width: 960px;
++}
++
+diff --git a/templates/base.html b/templates/base.html
+index 6a5f418..7f428a8 100644
+--- a/templates/base.html
++++ b/templates/base.html
+@@ -19,50 +19,50 @@
+ 
+ <body>
+ <div class="mycontainer">
+-        <nav class="navbar navbar-default" role="navigation">
+-
+-    <div class="contain">
+-        <div class="container-fluid">
+-        <div class="navbar-header">
+-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+-            <span class="sr-only">Toggle navigation</span>
+-            <span class="icon-bar"></span>
+-            <span class="icon-bar"></span>
+-            <span class="icon-bar"></span>
+-          </button>
+-          <a class="navbar-brand" href="index"><h1>Dotis</h1></a>
+-        </div>
+-
+-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+-          <ul class="nav navbar-nav navbar-right">
+-            <li><form class="navbar-form navbar-left" role="search">
+-            <div class="form-group">
+-              <input type="text" class="form-control" placeholder="Search for Collections">
++    <nav class="navbar navbar-default" role="navigation">
++        <div class="contain">
++            <div class="container-fluid">
++                <div class="navbar-header">
++                  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
++                    <span class="sr-only">Toggle navigation</span>
++                    <span class="icon-bar"></span>
++                    <span class="icon-bar"></span>
++                  </button>
++                  <a class="navbar-brand" href="index"><h1>Dotis</h1></a>
++                </div>
++                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
++                  <ul class="nav navbar-nav navbar-right">
++                    <li><form class="navbar-form navbar-left" role="search">
++                    <div class="form-group">
++                      <input type="text" class="form-control" placeholder="Search for Collections">
++                    </div>
++                    <button type="submit" class="btn btn-default">Go</button>
++                    </form></li>
++                    <li><a href="#">About</a></li>
++                    <li><a href="login">Login</a></li>
++                    <li class="dropdown">
++                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Menu <span class="caret"></span></a>
++                      <ul class="dropdown-menu" role="menu">
++                        <li><a href="#">Action</a></li>
++                        <li><a href="#">Another action</a></li>
++                        <li><a href="#">Something else here</a></li>
++                        <li class="divider"></li>
++                        <li><a href="#">Sign out</a></li>
++                      </ul>
++                    </li>
++                  </ul>
++                </div>
+             </div>
+-            <button type="submit" class="btn btn-default">Go</button>
+-            </form></li>
+-            <li><a href="#">About</a></li>
+-            <li><a href="login">Login</a></li>
+-            <li class="dropdown">
+-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Menu <span class="caret"></span></a>
+-              <ul class="dropdown-menu" role="menu">
+-                <li><a href="#">Action</a></li>
+-                <li><a href="#">Another action</a></li>
+-                <li><a href="#">Something else here</a></li>
+-                <li class="divider"></li>
+-                <li><a href="#">Sign out    </a></li>
+-              </ul>
+-            </li>
+-          </ul>
+         </div>
+-      </div>
+
+ </body>
+ </html>
+ 
+diff --git a/templates/donation.html b/templates/donation.html
+index 77732c2..356b0f1 100644
+--- a/templates/donation.html
++++ b/templates/donation.html
+@@ -6,27 +6,30 @@
+ {% endblock %}
+ 
+ {% block content %}
+-<br/><br/>
+ <div class="container">
+-  <h3>Create Donation</h3>
++  <div class="row">
++    <div class="col-xs-5"></div>
++    <div class="col-xs-6"><h3>Create Donation</h3></div>
++  </div>
++  
+   <form role="form" id="createDonationForm" action="/postcreatedonation" method="post">
+-  {% csrf_token %}
++    {% csrf_token %}
+     <div class="form-group">
+       <div class="row">
+-        <div class="col-xs-2"><label for="name">Name</label></div>
+-        <div class="col-xs-3"><input type="text" name="name" class="form-control" id="name" placeholder="Enter Donation Name"></div>
++        <div class="col-xs-5"><label for="name">Name</label></div>
++        <div class="col-xs-7"><input type="text" name="name" class="form-control" id="name" placeholder="Enter Donation Name"></div>
+       </div>
+       <div class="row">
+-        <div class="col-xs-2"><label for="weight">Weight (lbs)</label></div>
+-        <div class="col-xs-3"><input type="text" name="weight" class="form-control" id="weight" placeholder="Enter Weight"></div>
++        <div class="col-xs-5"><label for="weight">Weight (lbs)</label></div>
++        <div class="col-xs-7"><input type="text" name="weight" class="form-control" id="weight" placeholder="Enter Weight"></div>
+       </div> 
+       <div class="row">
+-        <div class="col-xs-2"><label for="estimated_value">Estimated Value ($)</label></div>
+-        <div class="col-xs-3"><input type="text" name="estimated_value" class="form-control" id="estimated_value" placeholder="Enter Estimated Value"></div>
++        <div class="col-xs-5"><label for="estimated_value">Estimated Value ($)</label></div>
++        <div class="col-xs-7"><input type="text" name="estimated_value" class="form-control" id="estimated_value" placeholder="Enter Estimated Value"></div>
+       </div> 
+       <div class="row">
+-        <div class="col-xs-2"><label for="donation_type">Donation Type</label></div>
+-        <div class="col-xs-2">
++        <div class="col-xs-5"><label for="donation_type">Donation Type</label></div>
++        <div class="col-xs-7">
+           <select class="" id="donation_type" name="donation_type">
+             <option value="0">Clothes</option>
+             <option value="1">Furniture</option>
+@@ -35,18 +38,22 @@
+         </div>
+       </div> 
+       <div class="row">
+-        <div class="col-xs-2"><label for="item_count">Item Count</label></div>
+-        <div class="col-xs-3"><input type="text" name="item_count" class="form-control" id="item_count" placeholder="Enter Item Count"></div>
++        <div class="col-xs-5"><label for="item_count">Item Count</label></div>
++        <div class="col-xs-7"><input type="text" name="item_count" class="form-control" id="item_count" placeholder="Enter Item Count"></div>
+       </div> 
+       <div class="row">
+-        <div class="col-xs-2"><label for="pickup_location">Pickup Location</label></div>
+-        <div class="col-xs-3"><input type="text" name="pickup_location" class="form-control" id="pickup_location" 
++        <div class="col-xs-5"><label for="pickup_location">Pickup Location</label></div>
++        <div class="col-xs-7"><input type="text" name="pickup_location" class="form-control" id="pickup_location" 
+         placeholder="Enter Pickup Location"></div>
+         <input type="text" name="lat" id="lat" value="" hidden>
+         <input type="text" name="lng" id="lng"value="" hidden>
+       </div> 
+     </div>
+-    <button type="submit" class="btn btn-default">Submit</button>
++    
++    <div class="row">
++      <div class="col-xs-5"></div>
++      <div class="col-xs-6"><button type="submit" class="btn btn-default">Submit</button></div>
++    </div>
+   </form>
+ </div>
+ {% endblock %}
+\ No newline at end of file
+diff --git a/templates/login.html b/templates/login.html
+index 782e570..74441dc 100644
+--- a/templates/login.html
++++ b/templates/login.html
+@@ -1,11 +1,7 @@
+ {% extends "base.html" %}
+ {% block style %}<link href="{{ STATIC_URL }}css/login.css" rel="stylesheet"/>{% endblock %}
+-{% block title %}Login or Register{% endblock %}
+-{% block sidebar %}
+-{% endblock %}
+ {% block content %}
+-	<div class = "login">
+-	
++<div class = "login">
+     <div class="loginform cf">
+ 		<form name="login" action="index_submit" method="get"  autocomplete="on" accept-charset="utf-8">  
+ 		    <ul>  
+@@ -17,7 +13,7 @@
+ 		        <input type="submit" class="btn btn-lg btn-primary" value="Login"></li>  
+ 		    </ul>  
+ 		</form>
+-		</div>
++	</div>
+ 	<div class="loginform">
+         <form name="login" action="" method="get"  autocomplete="on" accept-charset="utf-8"> 
+             <h1> Or Sign up </h1> 
+@@ -37,13 +33,12 @@
+             <li> 
+                 <label for="passwordsignup_confirm" class="youpasswd" data-icon="p">Please confirm your password </label>
+                 <input id="passwordsignup_confirm" name="passwordsignup_confirm" required="required" type="password" placeholder="confirm password"/>
+-            </p>
+-            
++            </li>
+                 <li><input type="submit"  class="btn btn-lg btn-danger" value="Sign up"/> </li>
+             
+             </ul>
+         </form>
+-        </div>	
+-	</div>
+-    <img id="fblogin-button" src="{{ STATIC_URL }}/images/facebook-login-button.png" onClick='fbLogin()'/>
++    </div>	
++</div>
++<img id="fblogin-button" src="{{ STATIC_URL }}/images/facebook-login-button.png" onClick='fbLogin()'/>
+ {% endblock %}
+\ No newline at end of file

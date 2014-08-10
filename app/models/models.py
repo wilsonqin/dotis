@@ -15,15 +15,7 @@ class Charity(Document):
   meta = {
     # put an index on appropriate fields
     'indexes': ['name', 'types_accepted']
-    }
-
-class DropoffLocation(Document):
-  charity = ReferenceField('Charity')
-  location = PointField(auto_index=False)
-
-  # meta = {
-  #       'indexes': [("location", "2dsphere"), 'charity']
-  #   }
+  }
 
 donation_status = ["open", "done"]
 
@@ -41,9 +33,10 @@ class Donation(Document):
   # collection_id = StringField()
   # charity_id = StringField()
 
-  # meta = {
-  #   'indexes': [("pickup_location", "2dsphere"), 'pickup_date_start', 'pickup_date_end']
-  # }
+  meta = {
+    'indexes': [[("pickup_location", "2dsphere"), ("pickup_date_start", 1)]]
+  }
+
 
 
 pledge_status = ["pending", "done"]
