@@ -6,6 +6,7 @@
     <script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
     <link href="{{ STATIC_URL }}css/main.css" rel="stylesheet"/>
     <script src="{{ STATIC_URL }}js/main.js"></script>
+    {% block style %}{% endblock %}
     <title>{% block title %}My amazing site{% endblock %}</title>
 </head>
 
@@ -15,7 +16,6 @@
 
     <div class="contain">
 <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
             <span class="sr-only">Toggle navigation</span>
@@ -26,7 +26,6 @@
           <a class="navbar-brand" href="#"><h1>Dotis</h1></a>
         </div>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav navbar-right">
             <li><form class="navbar-form navbar-left" role="search">
@@ -48,18 +47,31 @@
               </ul>
             </li>
           </ul>
-        </div><!-- /.navbar-collapse -->
-      </div><!-- /.container-fluid -->
+        </div>
+      </div>
             </div>
         </nav>
     <div id="sidebar">
         {% block sidebar %}
         {% endblock %}
     </div>
-
-    <div id="content">
         {% block content %}{% endblock %}
-    </div>
+        {% block footer %}
+        <footer>
+        <div class="contain">
+        <div class="row">
+            <div class="col-xs-3">
+                <h2>Footer</h2>
+            </div>
+            <div class="col-xs-9">
+                <p>About Us</p>
+                <p>Privacy</p>
+                <p>Help</p>
+            </div>
+            </div>
+            </div>
+        </footer>
+        {% endblock %}
     </div>
 </body>
 </html>

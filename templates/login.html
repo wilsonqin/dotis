@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block style %}<link href="{{ STATIC_URL }}css/login.css" rel="stylesheet"/>{% endblock %}
+{% block title %}Login or Register{% endblock %}
+{% block sidebar %}
+{% endblock %}
+{% block content %}
+	<div class = "login">
+	<div class="loginform">
+		<form name="login" action="index_submit" method="get"  autocomplete="on" accept-charset="utf-8">  
+		    <ul>  
+		        <li><label for="usermail">Email</label>  
+		        <input type="email" name="usermail" placeholder="yourname@email.com" required></li>  
+		        <li><label for="password">Password</label>  
+		        <input type="password" name="password" placeholder="password" required></li>  
+		        <li>  
+		        <input type="submit" class="btn btn-lg btn-primary" value="Login"></li>  
+		    </ul>  
+		</form>
+		</div>
+		<div id="register" class="animate form">
+            <form name="login" action="" method="get"  autocomplete="on" accept-charset="utf-8"> 
+                <h1> Or Sign up </h1> 
+                <ul>
+                <li> 
+                    <label for="usernamesignup" class="uname" data-icon="u">Your username</label>
+                    <input id="usernamesignup" name="usernamesignup" required="required" type="text" placeholder="mysuperusername690" />
+                </li>
+                <li> 
+                    <label for="emailsignup" class="youmail" data-icon="e" > Your email</label>
+                    <input id="emailsignup" name="emailsignup" required="required" type="email" placeholder="mysupermail@mail.com"/> 
+                </li>
+                <li> 
+                    <label for="passwordsignup" class="youpasswd" data-icon="p">Your password </label>
+                    <input id="passwordsignup" name="passwordsignup" required="required" type="password" placeholder="eg. X8df!90EO"/>
+                </li>
+                <li> 
+                    <label for="passwordsignup_confirm" class="youpasswd" data-icon="p">Please confirm your password </label>
+                    <input id="passwordsignup_confirm" name="passwordsignup_confirm" required="required" type="password" placeholder="eg. X8df!90EO"/>
+                </p>
+                
+                    <li><input type="submit"  class="btn btn-lg btn-danger" value="Sign up"/> </li>
+                
+                </ul>
+            </form>
+        </div>	
+	</div>
+{% endblock %}
