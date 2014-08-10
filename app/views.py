@@ -1,9 +1,11 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
-import json
-
-import pprint
+from django.utils import simplejson
 from models.models import Donation
+
+import json
+import pprint
+
 #from lib.facebook import 
 
 def index(request):
@@ -49,4 +51,28 @@ def postCreateDonation(request):
     #     print donation.donation_type
 
         # donation.save()
-    return createDonation(request);
+    return createDonation(request)
+
+"""
+ restful location data
+ expects the request to have radius, latitude, longitude
+"""
+def getDonations(request):
+    data = {
+       'test': 1
+    }
+
+    data = simplejson.dumps(data)
+    # if request.POST['radius'] and request.POST['lat'] and request.POST['lng']:
+    #     radius = request.POST['radius']
+    #     latitude = request.POST['lat']
+    #     longitude = request.POST['lng']
+    # else:
+    return HttpResponse(data, mimetype='application/json')
+
+
+
+
+
+
+
