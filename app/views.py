@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.utils import simplejson
-from models.models import Donation, User
+from models.models import Donation, User, populate_food_pantry
 
 import json
 import pprint
@@ -79,7 +79,7 @@ def register(request):
       
       userlogin(request, user)
       request.session.set_expiry(60 * 60 * 1) # 1 hour timeout
-      return HttpResponse("Registration Success")
+      return HttpResponse("Registration")
     else:
         return HttpResponse('register failed, user already exists')
   else:
@@ -148,7 +148,9 @@ def map(request):
 #     return HttpResponse(data, mimetype='application/json')
 
 
-
+def populate_food(request):
+  populate_food_pantry()
+  return HttpResponse("done")
 
 
 
