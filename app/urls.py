@@ -16,7 +16,5 @@ urlpatterns = patterns('',
     url(r'^login', views.login, name='login'),
     url(r'^createdonation', views.createDonation, name='createDonation'),
     url(r'^postcreatedonation', views.postCreateDonation, name='postCreateDonation'),
-
-
-
+    url(r'^browse', views.browse, name='browse'),
 )

@@ -7,9 +7,14 @@ function invisible(){
 }
 
 
-function fbLogin() {
+function fbLogin(rel_redirect_url) {
     FB.login(function(response) {
            // handle the response
+
+           //redirect us to our promised land
+            if(rel_redirect_url){
+              window.location.replace(rel_redirect_url);
+            }
          }, {scope: 'user_likes, friends_likes'});
 }
 
@@ -130,7 +135,7 @@ window.fbAsyncInit = function() {
       // result from direct interaction from people using the app (such as a mouse click)
       // (2) it is a bad experience to be continually prompted to login upon page load.
       // FB.login();
-      fbLogin();
+      fbLogin(g_REDIRECT_URL);
 
     } else {
       // In this case, the person is not logged into Facebook, so we call the login() 
@@ -139,7 +144,7 @@ window.fbAsyncInit = function() {
       // dialog right after they log in to Facebook. 
       // The same caveats as above apply to the FB.login() call here.
       // FB.login();
-      fbLogin();
+      fbLogin(g_REDIRECT_URL);
 
     }
   });

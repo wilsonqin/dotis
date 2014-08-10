@@ -4,14 +4,28 @@ import json
 
 import pprint
 from models.models import Donation
+#from lib.facebook import 
 
 def index(request):
-	context = {'title': 'adsfsa'}
-	return render(request, 'index.html', context)
+  context = {'title': 'adsfsa', 'redirect_url': request.path}
+  return render(request, 'index.html', context)
+
+def browse(request):
+  context = {}
+  return render(request, 'collections.html', context)
 
 def login(request):
-    context = {'title': 'Login to Dotis'}
-    return render(request, 'login.html', context)
+  context = {
+    'title': 'Login to Dotis', 
+    'redirect_url': request['GET']['r']
+    }
+  return render(request, 'login.html', context)
+
+# for ye ole relative url redirecting after post login
+def redirect(request):
+  print request
+  context = {'title': 'Redirecting'}
+  return redirect
 
 def createDonation(request):
     context = {'title': 'Create Donation'}
