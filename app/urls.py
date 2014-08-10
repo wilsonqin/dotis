@@ -20,4 +20,6 @@ urlpatterns = patterns('',
     url(r'^users', views.browse, name='users'),
     url(r'^map', views.map, name='map'),
     # url(r'^getDonations', views.getDonations, name='getDonations')
+    url(r'^register', views.register, name='register'),
+    url(r'^registerfb', views.registerfb, name='register-facebook')
 )

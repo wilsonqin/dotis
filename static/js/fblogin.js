@@ -12,9 +12,10 @@ function fbLogin(rel_redirect_url) {
   // handle the response
 
   //redirect us to our promised land
-  if(rel_redirect_url){
-    window.location.replace(rel_redirect_url);
+  if(!rel_redirect_url){
+    window.location.replace('/index');
   }
+  window.location.replace(rel_redirect_url);
   }, {scope: 'user_likes, friends_likes'});
 }
 
@@ -122,7 +123,6 @@ window.fbAsyncInit = function() {
       else if (typeof bubbleVar !== 'undefined') {
         generalBubbles();
       }
-
 
     } else if (response.status === 'not_authorized') {
       // In this case, the person is logged into Facebook, but not into the app, so we call

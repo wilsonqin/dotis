@@ -91,11 +91,11 @@ STATIC_URL = '/static/'
 #import dj_database_url
 #DATABASES['default'] =  dj_database_url.config()
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.dummy'
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.dummy'
+    }
+}
 
 #Make DB connection here
 from mongoengine import connect
@@ -104,6 +104,10 @@ if PROD:
     connect('app28313994', username='test', password='abctest', host='kahana.mongohq.com', port=10043)
 else:
     connect('dotis')
+
+#ensure indexes
+from app.models.models import create_indexes
+create_indexes()
 
 #Authentication backends
 AUTH_USER_MODEL = 'mongo_auth.MongoUser'
@@ -132,4 +136,22 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
+)
+
+
+#makes users available in templates
+# TEMPLATE_CONTEXT_PROCESSORS = (
+#     'django.contrib.auth.context_processors.auth',
+# )
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    "django.contrib.auth.context_processors.auth",
+"django.core.context_processors.debug",
+"django.core.context_processors.i18n",
+"django.core.context_processors.media",
+"django.core.context_processors.static",
+"django.core.context_processors.tz",
+"django.contrib.messages.context_processors.messages",
+    'django.contrib.auth.context_processors.auth',
+    'django.core.context_processors.csrf',
 )
