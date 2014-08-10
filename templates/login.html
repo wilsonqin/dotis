@@ -16,6 +16,9 @@
 		        <input type="password" name="password" placeholder="password" required></li>  
 		        <li>  
 		        <input type="submit" class="btn btn-lg btn-primary" value="Login"></li>  
+                {% if redirect_url %}
+                    <input type="hidden" name="redirect_url" value="{{redirect_url}}">
+                {% endif %}
 		    </ul>  
 		</form>
 		</div>

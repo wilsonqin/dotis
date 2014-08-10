@@ -10,12 +10,12 @@ import pprint
 
 from mongoengine.django.auth import MongoEngineBackend
 from mongoengine.queryset import DoesNotExist
-from django.contrib.auth import login as userlogin
+from django.contrib.auth import login as userlogin, authenticate
 
 
 
 def index(request):
-  context = {'title': 'adsfsa', 'redirect_url': request.path}
+  context = {'title': 'adsfsa'}
   return render(request, 'index.html', context)
 
 def browse(request):
@@ -28,21 +28,30 @@ def users(request):
 
 def login(request):
   if(request.method == 'POST') and request.POST['usermail'] and request.POST['password']:
+    redirect_url = request.POST.get('redirect_url', '/index')
+    print 'redirect_url: ' + redirect_url
     #handle login attempt
     try:
       user = User.objects.get(email=request.POST['usermail'])
       if user.check_password(request.POST['password']):
           user.backend = 'mongoengine.django.auth.MongoEngineBackend'
           userlogin(request, user)
+
+          print 'login: user.is_authenticated: ' + request.user.is_authenticated()
+
           request.session.set_expiry(60 * 60 * 1) # 1 hour timeout
-          return HttpResponse(user)
+
+          print 'success logged in'
+          
+          #redirect to location if login success
+          return redirect(redirect_url)
       else:
           return HttpResponse('login failed')
     except DoesNotExist:
         return HttpResponse('error, please check your username and password combination')
-    except Exception as e:
-        print e
-        return HttpResponse('unknown error')
+    #except Exception as e:
+    #    print e
+    #   return HttpResponse('unknown error')
   else:
     #render login form
 
@@ -64,14 +73,13 @@ def register(request):
     except DoesNotExist:
       user = None
     if not user:
-      user = User(email=request.POST['emailsignup'], last_name=request.POST['lastnamesignup'], first_name=request.POST['firstnamesignup'], password=request.POST['passwordsignup'])
+      user = User(username=request.POST['emailsignup'], email=request.POST['emailsignup'], last_name=request.POST['lastnamesignup'], first_name=request.POST['firstnamesignup'], password=request.POST['passwordsignup'])
       user.init_password(request.POST['passwordsignup'])
       user.save()
       
-      user.backend = 'mongoengine.django.auth.MongoEngineBackend'
       userlogin(request, user)
       request.session.set_expiry(60 * 60 * 1) # 1 hour timeout
-      return HttpResponse(user)
+      return HttpResponse("Registration Success")
     else:
         return HttpResponse('register failed, user already exists')
   else:
@@ -81,9 +89,11 @@ def registerfb(request):
   return HttpResponse('fbregister')
 
 def donation(request):
-    if not request.user or not request.user.is_authenticated():
+    print 'request.user.is_authenticated=', request.user.is_authenticated()
+    if not request.user.is_authenticated():
+      print 'on donation page, not authd '
       return redirect('/login?r=%s' % request.path)
-      
+
     context = {'title': 'Donation'}
     return render(request, 'donation.html', context)
 

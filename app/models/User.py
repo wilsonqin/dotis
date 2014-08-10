@@ -1,9 +1,10 @@
 from mongoengine import *
 from hashlib import sha1 
+from mongoengine.django.auth import User as MUser
 
 user_types = ["native", "facebook", "google"]
 
-class User(Document):
+class User(MUser):
   email = StringField(required=True)
   first_name = StringField(required=True)
   last_name = StringField(required=True)
@@ -25,6 +26,9 @@ class User(Document):
       'zipcode'
     ]
   }
+
+  #for django hacky auth reasons
+  backend = 'mongoengine.django.auth.MongoEngineBackend'
 
   def check_password(self, plaintxt_password):
     hash_obj = sha1(plaintxt_password)

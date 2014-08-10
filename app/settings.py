@@ -39,6 +39,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'mongoengine.django.mongo_auth',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -112,7 +113,7 @@ create_indexes()
 #Authentication backends
 AUTH_USER_MODEL = 'mongo_auth.MongoUser'
 
-MONGOENGINE_USER_DOCUMENT = 'mongoengine.django.auth.User'
+MONGOENGINE_USER_DOCUMENT = 'app.models.models.User'
 
 AUTHENTICATION_BACKENDS = (
     'mongoengine.django.auth.MongoEngineBackend',
