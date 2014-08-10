@@ -14,9 +14,10 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^index', views.index, name='index'),
     url(r'^login', views.login, name='login'),
-    url(r'^donation', views.createDonation, name='createDonation'),
-    url(r'^postcreatedonation', views.postCreateDonation, name='postCreateDonation'),
+    url(r'^donation', views.donation, name='donation'),
+    url(r'^createdonation', views.createDonation, name='createDonation'),
     url(r'^browse', views.browse, name='browse'),
     url(r'^users', views.browse, name='users'),
+    url(r'^map', views.map, name='map'),
     # url(r'^getDonations', views.getDonations, name='getDonations')
 )

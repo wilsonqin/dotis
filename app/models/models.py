@@ -60,8 +60,8 @@ class Collection(Document):
   date_committed = DateTimeField(default=datetime.datetime.now)
 
   meta = {
-        'indexes': ["collector", "donation_list", "date_committed"]
-    }
+      'indexes': ["collector", "donation_list", "date_committed"]
+  }
 
 # event of donation pick up / drop off
 # status is 0 for donation created by user
