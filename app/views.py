@@ -14,6 +14,10 @@ def browse(request):
   context = {}
   return render(request, 'collections.html', context)
 
+def users(request):
+  context = {}
+  return render(request, 'users.html', context)
+
 def login(request):
   
   #wrap redirect_url

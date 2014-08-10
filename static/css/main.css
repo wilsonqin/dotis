@@ -11,7 +11,9 @@
 .navbar-brand h1 {
 	color: #eeff5e;
 }
-
+.navbar-default .navbar-nav > li > a {
+color: white;
+}
 .navbar-header {
 	height: 100px;
 }
