@@ -1,8 +1,83 @@
 {% extends "base.html" %}
 
-{% block title %}My amazing blog{% endblock %}
+{% block title %}My shitty blog{% endblock %}
 
 {% block content %}
+<header>
+			<div class="header-blurb"><h1>We make donations effortless. <small>and help you earn tax breaks too. Lorb ipsum dolor blah etc etc.</small></h1></div>
+			<div class="su"><h3>Learn More<a class="btn btn-lg btn-success">Start giving</a></h3></div>
+		</header>
+		<section class="map">
+			
+		</section>
+		<section class="collections">
+		<div class="contain">
+			<div class="row">
+			<div class="col-sm-4">
+				<h3>Roxbury Clothes</h3>
+				<p><b>$507</b> of <b>clothes, books, games</b></p>
+				<div class="sm-map"></div>
+				<p class="charity"><b>Charity: </b>Freedom Force Int'l</p>
+				<p class="collector"><b>Collector: </b>Jorge S.</p>
+				<p class="more">More</p>
+			</div>
+			<div class="col-sm-4">
+				<h3>Roxbury Clothes</h3>
+				<p><b>$507</b> of <b>clothes, books, games</b></p>
+				<div class="sm-map"></div>
+				<p class="charity"><b>Charity: </b>Freedom Force Int'l</p>
+				<p class="collector"><b>Collector: </b>Jorge S.</p>
+				<p class="more">More</p>
+			</div>
+			<div class="col-sm-4">
+				<h3>Roxbury Clothes</h3>
+				<p><b>$507</b> of <b>clothes, books, games</b></p>
+				<div class="sm-map"></div>
+				<p class="charity"><b>Charity: </b>Freedom Force Int'l</p>
+				<p class="collector"><b>Collector: </b>Jorge S.</p>
+				<p class="more">More</p>
+			</div>
+			</div>
+			</div>
+		</section>
+		<section class="users">
+		<div class="contain">
+		<div class="row">
+			<div class="col-xs-4">
+				<div class="img"><img src=""></div>
+				<p>*****</p>
+				<p>$5334 Donated to 56 Collections</p>
+				<p>56 miles driven to col- lect 23 collections Roxbury, MA</p>
+			</div>
+			<div class="col-xs-4">
+				<div class="img"><img src=""></div>
+				<p>*****</p>
+				<p>$5334 Donated to 56 Collections</p>
+				<p>56 miles driven to col- lect 23 collections Roxbury, MA</p>
+			</div>
+			<div class="col-xs-4">
+				<div class="img"><img src=""></div>
+				<p>*****</p>
+				<p>$5334 Donated to 56 Collections</p>
+				<p>56 miles driven to col- lect 23 collections Roxbury, MA</p>
+			</div>
+			</div>
+			</div>
+		</section>
+		<footer>
+		<div class="contain">
+		<div class="row">
+			<div class="col-xs-3">
+				<h2>Dotis</h2>
+			</div>
+			<div class="col-xs-9">
+				<p>About Us</p>
+				<p>Privacy</p>
+				<p>Help</p>
+			</div>
+			</div>
+			</div>
+		</footer>
 {% for entry in blog_entries %}
     <h2>{{ entry.title }}</h2>
     <p>{{ entry.body }}</p>
