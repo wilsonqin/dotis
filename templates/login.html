@@ -15,7 +15,9 @@
 		        <li><label for="password">Password</label>  
 		        <input type="password" name="password" placeholder="password" required></li>  
 		        <li>  
-		        <input type="submit" class="btn btn-lg btn-primary" value="Login"></li>  
+		        <input type="submit" class="btn btn-lg btn-primary" value="Login"></li>
+                <img id="fblogin-button" src="{{ STATIC_URL }}/images/facebook-login-button.png" onClick='fbLogin()'/>
+                
                 {% if redirect_url %}
                     <input type="hidden" name="redirect_url" value="{{redirect_url}}">
                 {% endif %}
@@ -29,11 +31,11 @@
             <ul>
             <li>
                 <label for="firstnamesignup" class="fname" data-icon="u">Your First Name</label>
-                <input id="firstnamesignup" name="firstnamesignup" required="required" type="text" placeholder="username" />
+                <input id="firstnamesignup" name="firstnamesignup" required="required" type="text" placeholder="first name" />
             </li>
             <li>
                 <label for="lastnamesignup" class="lname" data-icon="u">Your Last Name</label>
-                <input id="lastnamesignup" name="lastnamesignup" required="required" type="text" placeholder="username" />
+                <input id="lastnamesignup" name="lastnamesignup" required="required" type="text" placeholder="last name" />
             </li>
             <li> 
                 <label for="emailsignup" class="youmail" data-icon="e" > Your email</label>
@@ -54,5 +56,4 @@
         </form>
         </div>	
 	</div>
-    <img id="fblogin-button" src="{{ STATIC_URL }}/images/facebook-login-button.png" onClick='fbLogin()'/>
 {% endblock %}

@@ -3,7 +3,7 @@ from __future__ import division
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.utils import simplejson
-from models.models import Donation, User, Collection, populate_food_pantry
+from models.models import Donation, User, Collection, populate_food_pantry, populate_collection_test
 
 import json
 import pprint
@@ -25,9 +25,10 @@ def browse(request):
   context = {}
   return render(request, 'collections.html', context)
 
-def col(request, collection_id):
-  collection = Collection.objects(collection_id)
-  context = {'name': collection.collector.first_name}
+def collection(request, collection_id):
+  # collection = Collection.objects(collection_id)
+  # context = {'name': collection.collector.first_name}
+  context = {}
   return render(request, 'collection.html', context)
 
 def users(request):
@@ -173,6 +174,8 @@ def populate_food(request):
   populate_food_pantry()
   return HttpResponse("done")
 
-
+def populate_collection(request):
+  populate_collection_test()
+  return HttpResponse("done")
 
 

@@ -17,7 +17,7 @@ urlpatterns = patterns('',
     url(r'^donation', views.donation, name='donation'),
     url(r'^createdonation', views.createDonation, name='createDonation'),
     url(r'^browse', views.browse, name='browse'),
-    url(r'^users', views.browse, name='users'),
+    url(r'^users', views.users, name='users'),
     url(r'^map', views.map, name='map'),
     url(r'^getDonations', views.getDonations, name='getDonations'),
     # url(r'^collection/(?P<collection_id>[0-9]+)', views.collection, name='collection'),
@@ -27,4 +27,5 @@ urlpatterns = patterns('',
 
     #populate links
     url(r'^populate/charities', views.populate_food, name='populate charities'),
+    url(r'^populate/collection', views.populate_collection, name='populate_collection'),
 )
