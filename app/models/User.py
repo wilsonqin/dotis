@@ -28,7 +28,7 @@ class User(Document):
 
   def check_password(self, plaintxt_password):
     hash_obj = sha1(plaintxt_password)
-    return (hash_obj.hexdigest() == password)
+    return (hash_obj.hexdigest() == self.password)
 
   #only call when first time setting a new password
   def init_password(self, plaintxt_password):

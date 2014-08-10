@@ -40,7 +40,8 @@ def login(request):
           return HttpResponse('login failed')
     except DoesNotExist:
         return HttpResponse('error, please check your username and password combination')
-    except Exception:
+    except Exception as e:
+        print e
         return HttpResponse('unknown error')
   else:
     #render login form
@@ -80,8 +81,9 @@ def registerfb(request):
   return HttpResponse('fbregister')
 
 def donation(request):
-    if not request.user.is_authenticated():
+    if not request.user or not request.user.is_authenticated():
       return redirect('/login?r=%s' % request.path)
+      
     context = {'title': 'Donation'}
     return render(request, 'donation.html', context)
 
