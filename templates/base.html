@@ -7,7 +7,15 @@
     <link href="{{ STATIC_URL }}css/main.css" rel="stylesheet"/>
     <script src="{{ STATIC_URL }}js/main.js"></script>
     {% block style %}{% endblock %}
-    <title>{% block title %}My amazing site{% endblock %}</title>
+    <title>{% block title %}Home Page{% endblock %}</title>
+	<script src="{{ STATIC_URL }}js/fblogin.js"></script>
+
+    <!-- set the global redirect url for later scripts -->
+    <script>
+        /* set redirect_url global if necessary */
+        g_REDIRECT_URL = {% if redirect_url %}"{{ redirect_url }}"{% else %}NULL{% endif %};
+    </script>
+
 </head>
 
 <body>
