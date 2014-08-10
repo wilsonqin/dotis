@@ -79,16 +79,10 @@ def register(request):
 def registerfb(request):
   return HttpResponse('fbregister')
 
-<<<<<<< HEAD
 def donation(request):
-    context = {'title': 'Donation'}
-=======
-def createDonation(request):
     if not request.user.is_authenticated():
       return redirect('/login?r=%s' % request.path)
-
-    context = {'title': 'Create Donation'}
->>>>>>> 752966cf104a946370b69d27484af9157710b832
+    context = {'title': 'Donation'}
     return render(request, 'donation.html', context)
 
 # validate form elements and accept the form
