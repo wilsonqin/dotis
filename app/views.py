@@ -1,3 +1,5 @@
+from __future__ import division
+
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.utils import simplejson
@@ -11,6 +13,7 @@ import pprint
 from mongoengine.django.auth import MongoEngineBackend
 from mongoengine.queryset import DoesNotExist
 from django.contrib.auth import login as userlogin, authenticate
+from mongoengine import *
 
 
 
@@ -113,11 +116,12 @@ def createDonation(request):
     estimated_value = request.POST['estimated_value']
     # user = request.POST['user_id'] 
     item_count = request.POST['item_count']
-    pickup_location = { "type" : "Point" , "coordinates" : [request.POST['lat'], request.POST['lng']]}
+    pickup_location = { "type" : "Point" , "coordinates" : [float(request.POST['lat']), float(request.POST['lng'])]}
     donation_obj = Donation(name=name, donation_type=donation_type, weight=weight, description=description, estimated_value= estimated_value, item_count=item_count,
         pickup_location=pickup_location)
 
     print donation_obj.pickup_location
+    donation_obj.save();
 
 
     # if request.POST['name'] and request.POST['donation_type'] and request.POST['item_count'] and request.POST['estimated_value']:
@@ -128,30 +132,42 @@ def createDonation(request):
     return donation(request)
 
 def map(request):
-    context = {'title': 'Map'}
+    context = {'title': 'Donations Map'}
     return render(request, 'map.html', context)
 
 """
  restful location data
  expects the request to have radius, latitude, longitude
 """
-# def getDonations(request):
-#     data = {
-#        'test': 1
-#     }
+from bson.objectid import ObjectId
+def getDonations(request):
 
-#     data = simplejson.dumps(data)
-#     # if request.POST['radius'] and request.POST['lat'] and request.POST['lng']:
-#     #     radius = request.POST['radius']
-#     #     latitude = request.POST['lat']
-#     #     longitude = request.POST['lng']
-#     # else:
-#     db.places.find( { 
-#         loc: { $geoWithin :
-#               { $center : [ [-74, 40.74], 10 ] }
-#     } } )
+    data = {}
+    if request.GET['radius'] and request.GET['lat'] and request.GET['lng']:
+        radius = float(request.GET['radius']) /  3963.192 #in radians
+        lat = float(request.GET['lat'])
+        lng = float(request.GET['lng'])
+        places = Donation.objects(pickup_location__geo_within_center=[[lat, lng], radius ]);
+        places_json = []
+        for item in places:
+            places_json.append({
+                'name' : item.name,
+                'donation_type' : item.donation_type,  
+                'weight' : item.weight,
+                'description' : item.description,
+                'estimated_value' : item.estimated_value,
+                'item_count' : item.item_count,
+                'lat' : item.pickup_location['coordinates'][0],
+                'lng' : item.pickup_location['coordinates'][1],
+                'id' : str(item.id)
+            });
+    
+        data = {
+            'places': places_json
+        }
 
-#     return HttpResponse(data, mimetype='application/json')
+    data = simplejson.dumps(data)
+    return HttpResponse(data, content_type='application/json')
 
 
 def populate_food(request):

@@ -1,17 +1,23 @@
 {% extends "base.html" %}
 
-
 {% block style %}
-<link href="{{ STATIC_URL }}css/donation.css" rel="stylesheet"/>
-<script src="{{ STATIC_URL }}js/donation.js"></script>
-{% endblock %}
-
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-    <meta charset="utf-8">
-    <title>Geocoding service</title>
+    <link href="{{ STATIC_URL }}css/map.css" rel="stylesheet"/>
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
     <script src="http://google-maps-utility-library-v3.googlecode.com/svn/trunk/styledmarker/src/StyledMarker.js"></script>
+   <script src="{{ STATIC_URL }}js/map.js"></script>
+{% endblock %}
 
-
+{% block content %}
+    <div class="title"><h2>{{ title }}</h2>
+      <input type="text" name="map_search" class="input-medium map_search" id="map_search" placeholder="Search for address, city, state, zip code">
+      within a radius of 
+      <select id="map_radius" class="map_radius" name="map_radius">
+        <option value="1">1 mile</option>
+        <option value="5">5 miles</option>
+        <option value="10">10 miles</option>
+        <option value="50">50 miles</option>
+      </select>
+      <button type="submit" id="map-btn" class="input-medium">Go</button>
+    </div>
     <div id="map-canvas"></div>
-
+{% endblock %}
