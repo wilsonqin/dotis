@@ -98,10 +98,10 @@ def registerfb(request):
   return HttpResponse('fbregister')
 
 def donation(request):
-    print 'request.user.is_authenticated=', request.user.is_authenticated()
-    if not request.user.is_authenticated():
-      print 'on donation page, not authd '
-      return redirect('/login?r=%s' % request.path)
+    #print 'request.user.is_authenticated=', request.user.is_authenticated()
+    #if not request.user.is_authenticated():
+    #  print 'on donation page, not authd '
+    #  return redirect('/login?r=%s' % request.path)
 
     context = {'title': 'Donation'}
     return render(request, 'donation.html', context)
@@ -175,7 +175,7 @@ def populate_food(request):
   return HttpResponse("done")
 
 def populate_collection(request):
-  populate_collection_test()
-  return HttpResponse("done")
+  collection_id = populate_collection_test()
+  return HttpResponse("collection created: " + str(collection_id))
 
 
