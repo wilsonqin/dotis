@@ -1,3 +1,5 @@
+from __future__ import division
+
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.utils import simplejson
@@ -11,7 +13,7 @@ import pprint
 from mongoengine.django.auth import MongoEngineBackend
 from mongoengine.queryset import DoesNotExist
 from django.contrib.auth import login as userlogin
-
+from mongoengine import *
 
 
 def index(request):
@@ -110,30 +112,37 @@ def createDonation(request):
     return donation(request)
 
 def map(request):
-    context = {'title': 'Map'}
+    context = {'title': 'Donations Map'}
     return render(request, 'map.html', context)
 
 """
  restful location data
  expects the request to have radius, latitude, longitude
 """
-# def getDonations(request):
-#     data = {
-#        'test': 1
-#     }
+def getDonations(request):
 
-#     data = simplejson.dumps(data)
-#     # if request.POST['radius'] and request.POST['lat'] and request.POST['lng']:
-#     #     radius = request.POST['radius']
-#     #     latitude = request.POST['lat']
-#     #     longitude = request.POST['lng']
-#     # else:
-#     db.places.find( { 
-#         loc: { $geoWithin :
-#               { $center : [ [-74, 40.74], 10 ] }
-#     } } )
+    data = {}
+    print request.GET
 
-#     return HttpResponse(data, mimetype='application/json')
+
+    if request.GET['radius'] and request.GET['lat'] and request.GET['lng']:
+        radius = float(request.GET['radius']) / 3959 #in radians
+        lat = float(request.GET['lat'])
+        lng = float(request.GET['lng'])
+        # Donation.find( { 
+        #     pickup_location: { $geoWithin : { $center : [ [lat, lng], radius ] }
+        # } } ) 
+        # test = Donation.find({"pickup_location":{"$geoWithin":{"$center":[[lat, lng], radius ] }}})
+        test = Donation.objects(pickup_location__geo_within_center=[[lat, lng], radius ]);
+
+        print test
+        # print places
+        # data = {
+        #     'places': places
+        # }
+
+    data = simplejson.dumps(data)
+    return HttpResponse(data, content_type='application/json')
 
 
 

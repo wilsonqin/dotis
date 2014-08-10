@@ -92,10 +92,10 @@ section.users {
 }
 footer {
 	background-color: rgba(45,128,45, .1);
- 	bottom: -120px;
- 	height: 120px;
+ 	bottom: -100px;
+ 	height: 100px;
 	text-align: center;
-	padding: 25px 50px;
+	padding: 25px 20px;
 	color:rgb(168, 168, 168);
 }
 footer .col-xs-9 {

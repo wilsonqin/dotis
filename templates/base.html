@@ -2,19 +2,19 @@
 <html lang="en">
 <head>
     <link href="{{ STATIC_URL }}css/bootstrap.css" rel="stylesheet"/>
-	<script src="{{ STATIC_URL }}js/jquery-2.1.1.min.js"></script>
+	  <script src="{{ STATIC_URL }}js/jquery-2.1.1.min.js"></script>
     <script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
     <link href="{{ STATIC_URL }}css/main.css" rel="stylesheet"/>
-    <script src="{{ STATIC_URL }}js/main.js"></script>
-    {% block style %}{% endblock %}
+    <script src="{{ STATIC_URL }}js/main.js"></script> 
     <title>{% block title %}{{ title }}{% endblock %}</title>
-	<script src="{{ STATIC_URL }}js/fblogin.js"></script>
+	  <script src="{{ STATIC_URL }}js/fblogin.js"></script>
 
     <!-- set the global redirect url for later scripts -->
     <script>
         /* set redirect_url global if necessary */
         g_REDIRECT_URL = {% if redirect_url %}"{{ redirect_url }}"{% else %}NULL{% endif %};
     </script>
+    {% block style %}{% endblock %}
 </head>
 
 <body>

@@ -1,15 +1,43 @@
-html, body, #map-canvas {
-        height: 100%;
-        margin: 0px;
-        padding: 0px
-      }
-      #panel {
-        position: absolute;
-        top: 5px;
-        left: 50%;
-        margin-left: -180px;
-        z-index: 5;
-        background-color: #fff;
-        padding: 5px;
-        border: 1px solid #999;
-      }
+#map-canvas {
+  height: 400px;
+  width: 100%;
+  margin: 40px 0 40px 0;
+  padding: 0px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#panel {
+  position: absolute;
+  /*top: 5px;*/
+  left: -50px;
+  right: 50px;
+  margin-left: 0px;
+  /*z-index: 5;*/
+  background-color: #fff;
+  padding: 5px;
+  border: 1px solid #999;
+}
+
+.title {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.map_search {
+  width: 30%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.map_radius {
+  width: 10%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+input{
+  text-align: center;
+}
